@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>王彦斐 - 求职个人主页</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --primary: #1f3a5f;
+        --primary-light: #34557c;
+        --accent: #5b7fa6;
+        --light-bg: #f4f6f9;
+        --border: #d9dee5;
+        --text-main: #222831;
+        --text-sub: #555c68;
+    }
+
+    body {
+        font-family: "Microsoft YaHei", "PingFang SC", SimSun, sans-serif;
+        background: #eef1f6;
+        color: var(--text-main);
+        line-height: 1.55;
+        font-size: 14.5px;
+    }
+
+    nav {
+        background: linear-gradient(90deg, #1f3a5f 0%, #34557c 100%);
+        position: sticky;
+        top: 0;
+        z-index: 99;
+        box-shadow: 0 2px 8px rgba(31, 58, 95, 0.25);
+    }
+
+    .nav-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 22px;
+        padding: 12px 20px;
+    }
+
+    .nav-wrap a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+    }
+
+    .nav-wrap a:hover {
+        opacity: 0.72;
+    }
+
+    .page-wrap {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 20px 16px 28px;
+    }
+
+    .a4-page {
+        position: relative;
+        width: 297mm;
+        min-height: 210mm;
+        background: #ffffff;
+        border-radius: 4px;
+        box-shadow: 0 6px 24px rgba(31, 58, 95, 0.12);
+        margin-bottom: 24px;
+        overflow: hidden;
+    }
+
+    .page-header-band {
+        height: 78px;
+        background: linear-gradient(120deg, #1f3a5f 0%, #2c4f7c 45%, #5b7fa6 100%);
+        color: #fff;
+        padding: 0 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .page-header-band .label {
+        font-size: 13px;
+        letter-spacing: 3px;
+        opacity: 0.85;
+    }
+
+    .page-header-band .name-title {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 2px;
+    }
+
+    .page-content {
+        padding: 18px 28px 22px;
+    }
+
+    .page-footer-band {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 36px;
+        background: linear-gradient(90deg, #eef2f7 0%, #dde6f0 100%);
+        border-top: 1px solid #d9e1ec;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 28px;
+        font-size: 12px;
+        color: #5b6474;
+    }
+
+    .section-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--primary);
+        padding-left: 10px;
+        margin-bottom: 14px;
+        border-left: 4px solid var(--primary);
+    }
+
+    .hero-section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        align-items: center;
+    }
+
+    .avatar-box img {
+        width: 110px;
+        height: 145px;
+        object-fit: cover;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .hero-info h1 {
+        font-size: 30px;
+        color: var(--primary);
+        margin-bottom: 4px;
+    }
+
+    .job-desc {
+        font-size: 15px;
+        color: var(--text-sub);
+        margin-bottom: 10px;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        font-size: 14px;
+        color: var(--text-sub);
+    }
+
+    .intro-content {
+        background: linear-gradient(120deg, #f6f8fb 0%, #eef2f7 100%);
+        border: 1px solid #e1e8f1;
+        padding: 14px 16px;
+        border-radius: 4px;
+        color: #333a46;
+        font-size: 14.5px;
+    }
+
+    .item-header {
+        display: flex;
+        justify-content: space-between;
+        font-weight: 600;
+        font-size: 15.5px;
+        margin-bottom: 6px;
+        color: var(--primary);
+    }
+
+    .item-sub {
+        color: var(--text-sub);
+        font-weight: 500;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .item-content {
+        padding-left: 4px;
+        margin-bottom: 14px;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
+
+    .award-item,
+    .cert-item {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+        padding: 10px 12px;
+        margin-bottom: 8px;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        background: #fbfcfd;
+    }
+
+    .award-text,
+    .cert-text {
+        flex: 1;
+        min-width: 320px;
+    }
+
+    .award-img-placeholder,
+    .cert-img-placeholder {
+        width: 120px;
+        height: 86px;
+        background: linear-gradient(135deg, #eef2f7, #dde6f0);
+        border: 1px dashed #9fb0c4;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: #5b6474;
+        text-align: center;
+    }
+    /* 新增：卡片内部多张图片横向排列容器 */
+    .img-row{
+        display:flex;
+        gap:10px;
+        margin-top:10px;
+    }
+
+    .skill-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .skill-card {
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 12px 14px;
+        background: #fbfcfd;
+    }
+
+    .skill-card h4 {
+        color: var(--primary);
+        margin-bottom: 6px;
+        font-size: 15px;
+    }
+    /* 爱好特长页面视频样式 */
+    .video-container{
+        width:100%;
+        margin-top:16px;
+    }
+    .video-container video{
+        width:100%;
+        border-radius:6px;
+        border:1px solid var(--border);
+    }
+
+    @media print {
+        nav {
+            display: none !important;
+        }
+        .video-container{
+            display:none !important;
+        }
+        body {
+            background: #fff;
+        }
+
+        .page-wrap {
+            max-width: unset;
+            padding: 0;
+            margin: 0;
+        }
+
+        .a4-page {
+            width: 297mm;
+            min-height: 210mm;
+            margin: 0;
+            box-shadow: none;
+            border-radius: 0;
+            page-break-after: always;
+        }
+
+        .a4-page:last-child {
+            page-break-after: avoid;
+        }
+
+        .page-footer-band {
+            position: fixed;
+            bottom: 0;
+        }
+
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="nav-wrap">
+        <a href="#page1">个人简介</a>
+        <a href="#page2">教育背景</a>
+        <a href="#page3">实习经历</a>
+        <a href="#page4">校园实践</a>
+        <a href="#page5">竞赛获奖</a>
+        <a href="#page6">专业技能和证书</a>
+        <a href="#page7">爱好与特长</a>
+    </div>
+</nav>
+
+<div class="page-wrap">
+
+    <!-- 第1页：个人简介 -->
+    <div id="page1" class="a4-page">
+        <div class="page-header-band">
+            <div class="label">PERSONAL PROFILE</div>
+            <div class="name-title">王彦斐 · 个人求职主页</div>
+        </div>
+
+        <div class="page-content">
+            <div class="hero-section">
+                <div class="avatar-box">
+                    <!-- 【证件照占位】替换为实际证件照文件名，例如 photo.jpg -->
+                    <img src="证件照.JPG" alt="个人证件照" />
+                </div>
+                <div class="hero-info">
+                    <h1>王彦斐</h1>
+                    <div class="job-desc">求职意向：中国邮政常州分公司｜数据分析岗（接受岗位调剂）</div>
+                    <div class="contact-info">
+                        <span>📞 18915805515</span>
+                        <span>✉️ 2748301518@qq.com</span>
+                        <span>📍 现居：江苏常州钟楼区</span>
+                        <span>🎓 2027届本科应届</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 22px;"></div>
+            <div class="section-title">个人简介</div>
+            <div class="intro-content">
+                计算机科学与技术本科应届生，专业排名前20%。具备企业嵌入式开发实习经历，擅长数据归集核对、台账文档整理；拥有多年学生组织管理经验，熟练开展数据统计分析、活动复盘优化、跨部门协同沟通；多项国家级、省级科创竞赛获奖，熟练Excel函数与数据透视表，具备良好逻辑分析能力。本地常州生源，稳定性强，服从岗位调剂，希望运用计算机与数据分析能力支撑邮政业务运营。
+            </div>
+        </div>
+
+        <div class="page-footer-band">
+            <span>求职个人主页</span>
+            <span>王彦斐</span>
+        </div>
+    </div>
+
+    <!-- 第2页：教育背景 -->
+    <div id="page2" class="a4-page">
+        <div class="page-header-band">
+            <div class="label">EDUCATION BACKGROUND</div>
+            <div class="name-title">教育背景</div>
+        </div>
+
+        <div class="page-content">
+            <div class="section-title">教育背景</div>
+
+            <div class="item-header">
+                <span>山东建筑大学｜计算机与人工智能学院｜计算机科学与技术｜工学学士</span>
+                <span>2023.09‑2027.07</span>
+            </div>
+            <div class="item-sub">本科全日制｜专业排名：年级前20%</div>
+
+            <div class="item-content">
+                <p><strong>核心课程：</strong>数据结构、数据库原理、操作系统、计算机网络、离散数学、面向对象程序设计、软件工程、算法分析与设计、概率论与数理统计、数字逻辑与数字系统</p>
+            </div>
+        </div>
+
+        <div class="page-footer-band">
+            <span>求职个人主页</span>
+            <span>王彦斐</span>
+        </div>
+    </div>
+
+    <!-- 第3页：实习经历 -->
+    <div id="page3" class="a4-page">
+        <div class="page-header-band">
+            <div class="label">INTERNSHIP EXPERIENCE</div>
+            <div class="name-title">实习经历</div>
+        </div>
+
+        <div class="page-content">
+            <div class="section-title">实习经历</div>
+
+            <div class="item-header">
+                <span>神思电子技术股份有限公司｜嵌入式软件开发实习生</span>
+                <span>2026.09‑2026.09</span>
+            </div>
+
+            <div class="item-content">
+                <ul>
+                    <li>协助嵌入式软件辅助开发与单元测试，完成代码调试、功能验证，核对硬件业务数据，梳理汇总程序问题；</li>
+                    <li>整理测试台账、开发文档，严格按项目规范完成资料归档，配合团队完成多轮迭代测试；</li>
+                    <li>强化数据校验、问题归纳能力，养成严谨规范的数据处理、文档留存的工作习惯。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-footer-band">
+            <span>求职个人主页</span>
+            <span>王彦斐</span>
+        </div>
+    </div>
+
+    <!-- 第4页：校园实践 -->
+    <div id="page4" class="a4-page">
+        <div class="page-header-band">
+            <div class="label">CAMPUS PRACTICE</div>
+            <div class="name-title">校园实践</div>
+        </div>
+
+        <div class="page-content">
+            <div class="section-title">校园实践</div>
+
+            <div class="item-header">
+                <span>校级社团主席</span>
+                <span>2024.09‑2026.09</span>
+            </div>
+            <div class="item-content">
+                <ul>
+                    <li>统筹社团整体运营，负责三十余场活动全流程策划落地，完成团队分工与进度管控；</li>
+                    <li>对接师生及校外合作单位，完成多方沟通协调；收集参与人数、预算、物资多维度数据，开展汇总分析，基于数据反馈迭代优化活动方案，组织复盘。</li>
+                </ul>
+            </div>
+
+            <div class="item-header">
+                <span>大学生发展中心主席</span>
+                <span>2025.06‑2026.06</span>
+            </div>
+            <div class="item-content">
+                <ul>
+                    <li>统筹中心日常运营与团队分工，负责活动策划、稿件采编与审核推送；</li>
+                    <li>统计活动参与、传播效果数据，复盘宣传成效，优化运营策略，联动学院多方完成业务协同与数据归集。</li>
+                </ul>
+            </div>
+
+            <div class="item-header">
+                <span>校团委宣传部部长</span>
+                <span>2024.09‑2025.09</span>
+            </div>
+            <div class="item-content">
+                <ul>
+                    <li>统筹宣传全流程，策划主题宣传活动，审核稿件把控内容质量，分配任务跟进项目进度；</li>
+                    <li>负责影像剪辑、物料制作，组织部门技能培训，锻炼目标拆解、流程梳理、多任务处理能力。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="page-footer-band">
+            <span>求职个人主页</span>
+            <span>王彦斐</span>
+        </div>
+    </div>
+
+    <!-- 第5页：竞赛获奖 -->
+    <div id="page5" class="a4-page">
+        <div class="page-header-band">
+            <div class="label">AWARDS & HONORS</div>
+            <div class="name-title">竞赛获奖</div>
+        </div>
+
+        <div class="page-content">
+            <div class="section-title">竞赛获奖</div>
+
+            <div class="award-item">
+                <div class="award-text">2026.06　全国大学生计算机应用能力与数字素养大赛AIoT嵌入式系统创新大赛 国赛优秀奖 省赛二等奖</div>
+                <!-- 【竞赛图片占位1】替换为实际奖状图片，例如 award1.jpg -->
+                <div class="award-img-placeholder">
+                    <img src="国赛优秀.jpg" alt="国赛优秀" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />
+                </div>
+            </div>
+
+            <div class="award-item">
+                <div class="award-text">2025.06　中国大学生计算机设计大赛　三等奖</div>
+                <!-- 【竞赛图片占位2】替换为实际奖状图片，例如 award2.jpg -->
+                <div class="award-img-placeholder">
+                    <img src="设计大赛.jpg" alt="奖状图片" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />
+                </div>
+            </div>
+
+            <div class="award-item">
+                <div class="award-text">2024.10　山东省大学生创客大赛　二等奖</div>
+                <!-- 【竞赛图片占位3】替换为实际奖状图片，例如 award3.jpg -->
+                <div class="award-img-placeholder">
+                    <img src="创客.jpg" alt="奖状图片" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />
+                </div>
+            </div>
+
+            <div class="award-item">
+                <div class="award-text">2024.10　全国三维数字化创新设计大赛　二等奖</div>
+                <!-- 【竞赛图片占位4】替换为实际奖状图片，例如 award4.jpg -->
+                <div class="award-img-placeholder">
+                    <img src="三维.jpg" alt="奖状图片" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />
+                </div>
+            </div>
+
+            <div class="award-item">
+                <div class="award-text">2024.05　山东省大学生机电产品创新设计竞赛　二等奖</div>
+                <!-- 【竞赛图片占位5】替换为实际奖状图片，例如 award5.jpg -->
+                <div class="award-img-placeholder">
+                    <img src="机电.jpg" alt="奖状图片" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer-band">
+            <span>求职个人主页</span>
+            <span>王彦斐</span>
+        </div>
+    </div>
+
+    <!-- 第6页：专业技能和证书 -->
+    <div id="page6" class="a4-page">
+        <div class="page-header-band">
+            <div class="label">SKILLS & CERTIFICATES</div>
+            <div class="name-title">专业技能和证书</div>
+        </div>
+
+        <div class="page-content">
+            <div class="section-title">专业技能和证书</div>
+
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <h4>语言能力</h4>
+                    <p>CET‑6：472分；CET‑4：535分，具备英文文档阅读能力。</p>
+                    <!--【语言能力：2张图片，分别对应四级、六级证书】-->
+                    <div class="img-row">
+                        <div class="cert-img-placeholder">
+                            <img src="CET4.png" alt="四级证书" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />
+                        </div>
+                        <div class="cert-img-placeholder">
+                            <img src="CET6.png" alt="六级证书" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h4>计算机技能</h4>
+                    <p>掌握数据库、算法、计算机网络等专业理论基础；善用 AI 智能体辅助完成数据清洗、信息归集与逻辑分析，提升数据处理效率；掌握 Office 套件基础操作，可完成常规数据统计工作。</p>
+                    <!-- 【证书图片占位2】可放技能证明或相关作品截图 -->
+                  <!--  <div class="cert-img-placeholder" style="margin-top:10px;">
+                        <img src="" alt="技能材料" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />
+                    </div>-->
+
+                </div>
+
+                <div class="skill-card">
+                    <h4>资格证书</h4>
+                    <p>C1驾驶证；民用无人驾驶航空器操控员执照（中型超视距）。</p>
+                    <!--【资格证书：2张图片，分别对应驾驶证、无人机执照】-->
+                    <div class="img-row">
+                        <div class="cert-img-placeholder">
+                            <img src="驾驶证.png" alt="C1驾驶证" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />
+                        </div>
+                        <div class="cert-img-placeholder">
+                            <img src="飞行执照.png" alt="无人机执照" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h4>综合能力</h4>
+                    <p>擅长信息观察归纳，具备项目统筹、跨方沟通协调、复盘优化能力，做事严谨注重细节。</p>
+                    <!-- 【证书图片占位4】无图可注释img标签 -->
+                 <!--   <div class="cert-img-placeholder" style="margin-top:10px;">-->
+
+                       <!-- <img src="" alt="能力证明" style="width:100%;height:100%;object-fit:cover;border-radius:4px;" />
+                    </div>-->
+
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer-band">
+            <span>求职个人主页</span>
+            <span>王彦斐</span>
+        </div>
+    </div>
+
+    <!--第7页：爱好与特长 【新增页面】-->
+    <div id="page7" class="a4-page">
+        <div class="page-header-band">
+            <div class="label">HOBBIES & STRENGTHS</div>
+            <div class="name-title">爱好与特长</div>
+        </div>
+        <div class="page-content">
+            <div class="section-title">爱好与特长</div>
+            <div class="intro-content">
+                擅长摄影摄像与视频后期剪辑，曾参与学校宣传片的拍摄制作项目。配合团队完成脚本沟通、外景取景、素材拍摄、画面筛选、剪辑调色等全流程工作；对大量音视频素材进行分类归档整理，注重画面细节把控，保障成片输出质量。在项目协作过程中，锻炼素材归集、信息整理以及团队协同能力，能够耐心完成大批量素材筛选与处理工作。
+            </div>
+            <!-- =========【视频链接】已替换为压缩版暖场.mp4（原版385MB不随网页上传） ========= -->
+            <div class="video-container">
+                <video controls preload="metadata">
+                    <source src="暖场.mp4" type="video/mp4">
+                    浏览器不支持视频播放，请下载宣传片文件查看。
+                </video>
+            </div>
+        </div>
+        <div class="page-footer-band">
+            <span>求职个人主页</span>
+            <span>王彦斐</span>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
